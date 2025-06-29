@@ -1,27 +1,28 @@
 ---
+sidebar_position: 4
 ---
 
-# Code Execution
+# 코드 실행
 
-Khoj can generate and run simple Python code as well. This is useful if you want to have Khoj do some data analysis, generate plots and reports. LLMs by default aren't skilled at complex quantitative tasks. Code generation & execution can come in handy for such tasks.
+Khoj는 간단한 Python 코드를 생성하고 실행할 수 있습니다. 이는 Khoj가 데이터 분석을 수행하고, 플롯 및 보고서를 생성하도록 하려는 경우에 유용합니다. LLM은 기본적으로 복잡한 정량적 작업에 능숙하지 않습니다. 코드 생성 및 실행은 이러한 작업에 유용할 수 있습니다.
 
-Khoj automatically infers when to use the code tool. You can also tell it explicitly to use the code tool or use the `/code` [slash command](https://docs.khoj.dev/features/chat/#commands) in your chat.
+Khoj는 코드 도구를 사용해야 할 때 자동으로 추론합니다. 또한 코드 도구를 사용하도록 명시적으로 지시하거나 채팅에서 `/code` [슬래시 명령](https://docs.khoj.dev/features/chat/#commands)을 사용할 수 있습니다.
 
-## Setup (Self-Hosting)
-### Terrarium Sandbox
-Use [Cohere's Terrarium](https://github.com/cohere-ai/cohere-terrarium) to host the code sandbox locally on your machine for free.
+## 설정 (자체 호스팅)
+### 테라리움 샌드박스
+[Cohere의 테라리움](https://github.com/cohere-ai/cohere-terrarium)을 사용하여 머신에 코드 샌드박스를 로컬로 무료로 호스팅할 수 있습니다.
 
-To run with Docker, use our [docker-compose.yml](https://github.com/khoj-ai/khoj/blob/master/docker-compose.yml) to automatically setup the Terrarium code sandbox, or start it manually like this:
+Docker로 실행하려면 [docker-compose.yml](https://github.com/khoj-ai/khoj/blob/master/docker-compose.yml)을 사용하여 테라리움 코드 샌드박스를 자동으로 설정하거나 다음과 같이 수동으로 시작할 수 있습니다:
 
 ```bash
 docker pull ghcr.io/khoj-ai/terrarium:latest
 docker run -d -p 8080:8080 ghcr.io/khoj-ai/terrarium:latest
 ```
 
-To run from source, check [these instructions](https://github.com/khoj-ai/cohere-terrarium?tab=readme-ov-file#development).
+소스에서 실행하려면 [이 지침](https://github.com/khoj-ai/cohere-terrarium?tab=readme-ov-file#development)을 확인하세요.
 
-#### Verify
-Verify that it's running, by evaluating a simple Python expression:
+#### 확인
+간단한 Python 표현식을 평가하여 실행 중인지 확인합니다:
 
 ```bash
 curl -X POST -H "Content-Type: application/json" \
@@ -30,11 +31,11 @@ curl -X POST -H "Content-Type: application/json" \
 --no-buffer
 ```
 
-### E2B Sandbox
-[E2B](https://e2b.dev/) allows Khoj to run code on a remote but versatile sandbox with support for more python libraries. This is [not free](https://e2b.dev/pricing).
+### E2B 샌드박스
+[E2B](https://e2b.dev/)는 Khoj가 더 많은 Python 라이브러리를 지원하는 원격이지만 다재다능한 샌드박스에서 코드를 실행할 수 있도록 합니다. 이는 [무료가 아닙니다](https://e2b.dev/pricing).
 
-To have Khoj use E2B as the code sandbox:
-1. Generate an API key on [their dashboard](https://e2b.dev/dashboard).
-2. Set the `E2B_API_KEY` environment variable to it on the machine running your Khoj server.
-   - When using our [docker-compose.yml](https://github.com/khoj-ai/khoj/blob/master/docker-compose.yml), uncomment and set the `E2B_API_KEY` env var in the `docker-compose.yml` file.
-3. Now restart your Khoj server to switch to using the E2B code sandbox.
+Khoj가 E2B를 코드 샌드박스로 사용하도록 하려면:
+1. [대시보드](https://e2b.dev/dashboard)에서 API 키를 생성합니다.
+2. Khoj 서버를 실행하는 머신에서 `E2B_API_KEY` 환경 변수를 해당 키로 설정합니다.
+   - [docker-compose.yml](https://github.com/khoj-ai/khoj/blob/master/docker-compose.yml)을 사용하는 경우, `docker-compose.yml` 파일에서 `E2B_API_KEY` 환경 변수를 주석 해제하고 설정합니다.
+3. 이제 Khoj 서버를 다시 시작하여 E2B 코드 샌드박스를 사용하도록 전환합니다.
