@@ -1,55 +1,55 @@
-# Authenticate (Multi-User Setup)
+# 인증 (다중 사용자 설정)
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-By default, most of the instructions for self-hosting Khoj assume a single user, and so the default configuration is to run in anonymous mode. However, if you want to enable authentication, you can do so either with with [Magic Links](#using-magic-links) or [Google OAuth](#using-google-oauth) as shown below. This can be helpful to make Khoj securely accessible to you and your team.
+기본적으로 Khoj 자체 호스팅에 대한 대부분의 지침은 단일 사용자를 가정하므로, 기본 구성은 익명 모드로 실행됩니다. 그러나 인증을 활성화하려면 아래와 같이 [매직 링크](#매직-링크-사용) 또는 [Google OAuth](#google-oauth-사용)를 사용할 수 있습니다. 이는 Khoj를 귀하와 귀하의 팀이 안전하게 접근할 수 있도록 하는 데 도움이 될 수 있습니다.
 
-:::tip[Note]
-Remove the `--anonymous-mode` flag from your khoj start up command or docker-compose file to enable authentication.
+:::tip[참고]
+인증을 활성화하려면 Khoj 시작 명령 또는 `docker-compose` 파일에서 `--anonymous-mode` 플래그를 제거하세요.
 :::
 
-## Using Magic Links
-The most secure way to do this is to integrate with [Resend](https://resend.com).
+## 매직 링크 사용
+가장 안전한 방법은 [Resend](https://resend.com)와 통합하는 것입니다.
 
-1. Setup your account at https://resend.com
-2. Set an environment variable for `RESEND_API_KEY`. You can get your API key [here](https://resend.com/api-keys).
-3. Set an environment variable for `RESEND_EMAIL`. This is the email address that will show up in your `from` field when sending magic links.
+1. https://resend.com에서 계정을 설정하세요.
+2. `RESEND_API_KEY` 환경 변수를 설정하세요. API 키는 [여기](https://resend.com/api-keys)에서 얻을 수 있습니다.
+3. `RESEND_EMAIL` 환경 변수를 설정하세요. 이 이메일 주소는 매직 링크를 보낼 때 `보낸 사람` 필드에 표시됩니다.
 
-This will allow you to automatically send sign-in links to users who want to log in.
+이렇게 하면 로그인하려는 사용자에게 로그인 링크를 자동으로 보낼 수 있습니다.
 
-It's still possible to use the magic links feature without Resend, but you'll need to manually send the magic links to users who want to log in.
+Resend 없이도 매직 링크 기능을 사용할 수 있지만, 로그인하려는 사용자에게 매직 링크를 수동으로 보내야 합니다.
 
-## Manually sending magic links
+## 매직 링크 수동 전송
 
-1. The user will have to enter their email address in the login page at http://localhost:42110/login.
+1. 사용자는 http://localhost:42110/login 로그인 페이지에 이메일 주소를 입력해야 합니다.
 
-    They'll click `Get Login Link`. Without the Resend API key, this will just create an unverified account for them in the backend
-<img src="/img/magic_link.png" alt="Magic link login form" width="400"/>
+    `로그인 링크 받기`를 클릭합니다. Resend API 키가 없으면 백엔드에 확인되지 않은 계정이 생성됩니다.
+<img src="/img/magic_link.png" alt="매직 링크 로그인 양식" width="400"/>
 
-2. You can get their magic link using the admin panel
+2. 관리자 패널을 사용하여 매직 링크를 얻을 수 있습니다.
 
-    Go to the [admin panel](http://localhost:42110/server/admin/database/khojuser/). You'll see a list of users. Search for the user you want to send a magic link to. Tick the checkbox next to their row, and use the action drop down at the top to 'Get email login URL'. This will generate a magic link that you can send to the user, which will appear at the top of the admin interface.
+    [관리자 패널](http://localhost:42110/server/admin/database/khojuser/)로 이동합니다. 사용자 목록이 표시됩니다. 매직 링크를 보낼 사용자를 검색합니다. 해당 행 옆의 확인란을 선택하고 상단의 작업 드롭다운을 사용하여 '이메일 로그인 URL 가져오기'를 선택합니다. 그러면 사용자에게 보낼 수 있는 매직 링크가 생성되며, 이는 관리자 인터페이스 상단에 나타납니다.
 
-    | Get email login URL | Retrieved login URL |
+    | 이메일 로그인 URL 가져오기 | 검색된 로그인 URL |
     |---------------------|---------------------|
-    | <img src="/img/admin_get_emali_login.png" alt="Get user magic sign in link" width="400" />| <img src="/img/admin_successful_login_url.png" alt="Successfully retrieved a login URL" width="400" />|
+    | <img src="/img/admin_get_emali_login.png" alt="사용자 매직 로그인 링크 가져오기" width="400" />| <img src="/img/admin_successful_login_url.png" alt="로그인 URL 성공적으로 검색됨" width="400" />|
 
-3. Send the magic link to the user. They can click on it to log in.
+3. 사용자에게 매직 링크를 보냅니다. 사용자는 링크를 클릭하여 로그인할 수 있습니다.
 
-    Once they click on the link, they'll automatically be logged in. They'll have to repeat this process for every new device they want to log in from, but they shouldn't have to repeat it on the same device.
+    링크를 클릭하면 자동으로 로그인됩니다. 로그인하려는 새 장치마다 이 과정을 반복해야 하지만, 동일한 장치에서는 반복할 필요가 없습니다.
 
-    A given magic link can only be used once. If the user tries to use it again, they'll be redirected to the login page to get a new magic link.
+    주어진 매직 링크는 한 번만 사용할 수 있습니다. 사용자가 다시 사용하려고 하면 새 매직 링크를 얻기 위해 로그인 페이지로 리디렉션됩니다.
 
-## Using Google OAuth
+## Google OAuth 사용
 
-For this method, you'll need to use the prod version of the Khoj package. You can install it as below:
+이 방법을 사용하려면 Khoj 패키지의 프로덕션 버전을 사용해야 합니다. 다음과 같이 설치할 수 있습니다.
 
 <Tabs groupId="server" queryString>
   <TabItem value="docker" label="Docker">
-  Update your `docker-compose.yml` to use the prod image
+  `docker-compose.yml`을 업데이트하여 프로덕션 이미지를 사용합니다.
       ```bash
       image: ghcr.io/khoj-ai/khoj-cloud:latest
       ```
@@ -62,13 +62,13 @@ For this method, you'll need to use the prod version of the Khoj package. You ca
   </TabItem>
 </Tabs>
 
-To set up your self-hosted Khoj with Google Auth, you need to create a project in the Google Cloud Console and enable the Google Auth API.
+Google Auth를 사용하여 자체 호스팅 Khoj를 설정하려면 Google Cloud Console에서 프로젝트를 만들고 Google Auth API를 활성화해야 합니다.
 
-To implement this, you'll need to:
-1. [Create authorization credentials](https://developers.google.com/identity/sign-in/web/sign-in) for your application.
-2. Open your [Google cloud console](https://console.developers.google.com/apis/credentials) and create a configuration like below for the relevant `OAuth 2.0 Client IDs` project:
+이를 구현하려면 다음을 수행해야 합니다.
+1. 애플리케이션에 대한 [인증 자격 증명](https://developers.google.com/identity/sign-in/web/sign-in)을 만듭니다.
+2. [Google 클라우드 콘솔](https://console.developers.google.com/apis/credentials)을 열고 관련 `OAuth 2.0 클라이언트 ID` 프로젝트에 대해 아래와 같은 구성을 만듭니다.
 ![Google auth login project settings](https://github.com/khoj-ai/khoj/assets/65192171/9bcbf6f4-197d-4d0c-973a-c10b1331c892)
 
-3. Configure these environment variables: `GOOGLE_CLIENT_SECRET`, and `GOOGLE_CLIENT_ID`. You can find these values in the Google cloud console, in the same place where you configured the authorized origins and redirect URIs.
+3. `GOOGLE_CLIENT_SECRET` 및 `GOOGLE_CLIENT_ID` 환경 변수를 구성합니다. 이 값은 Google 클라우드 콘솔에서 승인된 원본 및 리디렉션 URI를 구성한 동일한 위치에서 찾을 수 있습니다.
 
-That's it! That should be all you have to do. Now, when you reload Khoj without `--anonymous-mode`, you should be able to use your Google account to sign in.
+그게 다입니다! 이제 `--anonymous-mode` 없이 Khoj를 다시 로드하면 Google 계정을 사용하여 로그인할 수 있습니다.
