@@ -2,42 +2,42 @@
 sidebar_position: 4
 ---
 
-# Web
+# 웹
 
-> Query your Second Brain from your Web Browser
+> 웹 브라우저에서 당신의 두 번째 뇌에 질문하세요
 
-Without any desktop clients, you can start chatting with Khoj on the web. Bear in mind you do need one of the desktop clients in order to share and sync your data with Khoj.
+데스크톱 클라이언트 없이도 웹에서 Khoj와 채팅을 시작할 수 있습니다. 데이터를 Khoj와 공유하고 동기화하려면 데스크톱 클라이언트 중 하나가 필요하다는 점을 명심하세요.
 
-Go see it here --> [Khoj Cloud](https://app.khoj.dev).
+여기서 확인하세요 --> [Khoj 클라우드](https://app.khoj.dev).
 
 ![](/img/khoj_web_app_home.png)
 
-## Features
-- **Chat**
-  - **Faster answers**: Find answers quickly, from your private notes or the public internet
-  - **Assisted creativity**: Smoothly weave across retrieving answers and generating content
-  - **Iterative discovery**: Iteratively explore and re-discover your notes
-- **Search**
-  - **Natural**: Advanced natural language understanding using Transformer based ML Models
-  - **Incremental**: Incremental search for a fast, search-as-you-type experience
+## 기능
+- **채팅**
+  - **더 빠른 답변**: 개인 노트나 공개 인터넷에서 빠르게 답변을 찾으세요.
+  - **창의력 보조**: 답변 검색과 콘텐츠 생성을 원활하게 넘나드세요.
+  - **반복적 발견**: 노트를 반복적으로 탐색하고 재발견하세요.
+- **검색**
+  - **자연어**: 트랜스포머 기반 ML 모델을 사용한 고급 자연어 이해
+  - **점진적**: 입력과 동시에 검색 결과를 보여주는 빠른 점진적 검색 경험
 
-## Setup
-No setup required. The Khoj web app is the default Khoj client. You can access it from any web browser. Try it on [Khoj Cloud](https://app.khoj.dev)
+## 설치
+별도의 설치가 필요 없습니다. Khoj 웹 앱은 기본 Khoj 클라이언트입니다. 모든 웹 브라우저에서 접속할 수 있습니다. [Khoj 클라우드](https://app.khoj.dev)에서 사용해 보세요.
 
-## Upload Documents
-You can upload documents to Khoj from the web interface, one at a time. This is useful for uploading documents from your phone or tablet. To upload a document:
-1. You can drag and drop the document into the chat window.
-2. Or click the paperclip icon in the chat window and select the document from your file system.
+## 문서 업로드
+웹 인터페이스에서 한 번에 하나씩 문서를 Khoj에 업로드할 수 있습니다. 이는 휴대폰이나 태블릿에서 문서를 업로드할 때 유용합니다. 문서를 업로드하려면:
+1. 문서를 채팅 창으로 드래그 앤 드롭할 수 있습니다.
+2. 또는 채팅 창의 종이 클립 아이콘을 클릭하고 파일 시스템에서 문서를 선택합니다.
 
-![demo of dragging and dropping a file](https://assets.khoj.dev/home_page_data_upload.gif)
+![파일을 드래그 앤 드롭하는 데모](https://assets.khoj.dev/home_page_data_upload.gif)
 
-### Install on Phone
-You can optionally install Khoj as a [Progressive Web App (PWA)](https://web.dev/learn/pwa/installation). This makes it quick and easy to access Khoj on your phone.
-1. Login to [Khoj Cloud](https://app.khoj.dev) or your self-hosted Khoj server from the web browser (prefer Chrome/Edge) on your phone
-2. Open the 3 dot menu on the browser and click the "Add to Home screen" option
-3. Click "Install" on the next screen to add the Khoj icon to your phone Home screen
+### 휴대폰에 설치하기
+선택적으로 Khoj를 [프로그레시브 웹 앱(PWA)](https://web.dev/learn/pwa/installation)으로 설치할 수 있습니다. 이렇게 하면 휴대폰에서 Khoj에 빠르고 쉽게 접속할 수 있습니다.
+1. 휴대폰의 웹 브라우저(Chrome/Edge 권장)에서 [Khoj 클라우드](https.app.khoj.dev) 또는 직접 호스팅하는 Khoj 서버에 로그인합니다.
+2. 브라우저의 점 3개 메뉴를 열고 "홈 화면에 추가" 옵션을 클릭합니다.
+3. 다음 화면에서 "설치"를 클릭하여 휴대폰 홈 화면에 Khoj 아이콘을 추가합니다.
 
-**Process via Screenshots**
-| Step 1 | Step 2 | Step 3|
+**스크린샷으로 보는 과정**
+| 1단계 | 2단계 | 3단계|
 |:---:|:---:|:---:|
 | ![](/img/pwa_install_1.png) | ![](/img/pwa_install_2.png) | ![](/img/pwa_install_3.png) |
