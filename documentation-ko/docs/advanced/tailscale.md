@@ -1,33 +1,33 @@
 # Tailscale
 
 :::info
-This is only helpful for secure cross-device access to **self-hosted** Khoj. You **do not** need this if you're using [Khoj Cloud](https://app.khoj.dev).
+이 문서는 **자체 호스팅(self-hosted)** Khoj에 여러 기기에서 안전하게 접속하려는 경우에만 유용합니다. [Khoj Cloud](https://app.khoj.dev)를 사용하고 있다면 이 문서가 **필요하지 않습니다**.
 :::
 
-[Tailscale](https://tailscale.com) simplifies creating a private VPN using [Wireguard](https://www.wireguard.com/) and OAuth. So you can host and access services on your devices from anywhere.
-The instructions below are one way to simply and securely access your self-hosted Khoj from your phone, laptop etc.
+[Tailscale](https://tailscale.com)은 [Wireguard](https://www.wireguard.com/)와 OAuth를 사용하여 개인 VPN 생성을 단순화합니다. 이를 통해 어디서든 자신의 기기에서 서비스를 호스팅하고 접속할 수 있습니다.
+아래 설명은 휴대폰, 노트북 등에서 자체 호스팅 Khoj에 간단하고 안전하게 접속하는 한 가지 방법입니다.
 
-### Minimal Setup
-1. Setup khoj on your preferred machine following the [standard steps](/get-started/setup)
-2. Sign-up to [Tailscale](https://tailscale.com) and install the app on machines you want to access Khoj from. This usually includes your khoj server, your phone, laptop. Note the tailscale i.p of your khoj server.
-3. Start khoj on your server by including the flag `--host <your_server_tailscale_ip>`
-4. Open `http://<your_server_tailscale_ip>:42110` to access khoj from any device on your tailscale network!
+### 최소 설정
+1. [표준 절차](/get-started/setup)에 따라 선호하는 기기에 Khoj를 설치합니다.
+2. [Tailscale](https://tailscale.com)에 가입하고 Khoj에 접속하려는 기기에 앱을 설치합니다. 보통 Khoj 서버, 휴대폰, 노트북이 여기에 포함됩니다. Khoj 서버의 Tailscale IP 주소를 기록해두세요.
+3. 서버에서 `--host <your_server_tailscale_ip>` 플래그를 포함하여 Khoj를 시작합니다.
+4. Tailscale 네트워크에 있는 모든 기기에서 `http://<your_server_tailscale_ip>:42110`을 열어 Khoj에 접속하세요!
 
 
-### HTTPS Certificate
+### HTTPS 인증서
 :::info
-Tailscale uses Wireguard to encrypt and route traffic between your machines. So HTTPS isn't required with Tailscale for secure access. HTTPS with Tailscale is only useful for browsers to not complain about security and block certain features like clipboard access unless HTTPS is enabled.
+Tailscale은 Wireguard를 사용하여 기기 간의 트래픽을 암호화하고 라우팅합니다. 따라서 Tailscale을 사용하면 안전한 접속을 위해 HTTPS가 반드시 필요하지는 않습니다. Tailscale과 함께 HTTPS를 사용하는 것은 브라우저가 보안 경고를 표시하지 않게 하고, HTTPS가 활성화되지 않으면 클립보드 접근과 같은 특정 기능이 차단되는 것을 방지하는 데에만 유용합니다.
 :::
 
-1. Enable [MagicDNS](https://tailscale.com/kb/1081/magicdns#enabling-magicdns) and [HTTPS](https://tailscale.com/kb/1153/enabling-https) toggle on your tailscale admin console [DNS](https://login.tailscale.com/admin/dns) page. Note your unique tailscale domain name (usually ends with .ts.net)
-2. Create an https certificate for your Khoj server by running the following command:
+1. Tailscale 관리 콘솔의 [DNS](https://login.tailscale.com/admin/dns) 페이지에서 [MagicDNS](https://tailscale.com/kb/1081/magicdns#enabling-magicdns)와 [HTTPS](https://tailscale.com/kb/1153/enabling-https)를 활성화합니다. 고유한 Tailscale 도메인 이름(보통 .ts.net으로 끝남)을 기록해두세요.
+2. 다음 명령어를 실행하여 Khoj 서버용 HTTPS 인증서를 생성합니다:
    ```bash
-   # Assuming the server is named, `server` and your tailnet is `black-forest.ts.net`
-   # Note path of the .crt and .key files generated
+   # 서버 이름이 'server'이고 tailnet이 'black-forest.ts.net'이라고 가정합니다.
+   # 생성된 .crt 및 .key 파일의 경로를 기록해두세요.
 
    tailscale cert server.black-forest.ts.net
    ```
-3. Start khoj to be served via https on standard port
+3. 표준 포트에서 HTTPS를 통해 Khoj를 제공하도록 시작합니다.
    ```bash
    sudo KHOJ_DOMAIN=server.black-forest.ts.net \
    khoj \
@@ -36,4 +36,4 @@ Tailscale uses Wireguard to encrypt and route traffic between your machines. So 
    --host=server.black-forest.ts.net \
    --port 443
    ```
-4. You should now be able to access khoj on `https://server.black-forest.ts.net` from any device on your private tailscale network!
+4. 이제 개인 Tailscale 네트워크에 있는 모든 기기에서 `https://server.black-forest.ts.net`으로 Khoj에 접속할 수 있습니다!
