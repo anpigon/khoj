@@ -33,8 +33,8 @@ const config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'ko',
+    locales: ['ko', 'en'],
   },
 
   // Add a widget for Chatwoot for live chat if users need help
@@ -118,6 +118,10 @@ const config = {
             className: 'header-blog-link',
             title: 'Blog',
             'aria-label': 'Khoj Blog',
+          },
+          {
+            type: 'localeDropdown',
+            position: 'right',
           },
         ],
       },
