@@ -1,9 +1,9 @@
-# Desktop Quick Chat (Khoj Mini)
+# 데스크톱 빠른 채팅 (Khoj Mini)
 
-Once you have the Khoj [desktop application](https://khoj.dev/downloads) installed, you can use the desktop shortcut to quickly pull up a mini chat module for quicker answers. See the desktop setup instructions [in the docs](/clients/desktop.md) for more information.
+Khoj [데스크톱 애플리케이션](https://khoj.dev/downloads)을 설치하면 데스크톱 바로 가기를 사용하여 미니 채팅 모듈을 빠르게 불러와 더 빠른 답변을 얻을 수 있습니다. 자세한 내용은 [문서의 데스크톱 설정 지침](/clients/desktop.md)을 참조하세요.
 
-To use it, you just have to copy the text you want to inject into your query, and then run `Ctrl + Shift + K` (or `Cmd + Shift + K` on Mac) to open the mini chat module. The text you copied will be automatically pasted into the chat module, and you can then hit enter to get the answer. You can edit the text before hitting enter if you want to refine your query.
+사용하려면 쿼리에 삽입하려는 텍스트를 복사한 다음 `Ctrl + Shift + K` (Mac에서는 `Cmd + Shift + K`)를 실행하여 미니 채팅 모듈을 엽니다. 복사한 텍스트는 채팅 모듈에 자동으로 붙여넣어지며, Enter 키를 눌러 답변을 얻을 수 있습니다. 쿼리를 다듬고 싶다면 Enter 키를 누르기 전에 텍스트를 편집할 수 있습니다.
 
-The desktop shortcut is a great way to quickly get answers to your questions without having to switch between windows or tabs. It's especially useful when you're working on a project and need to quickly look up something without losing your focus.
+데스크톱 바로 가기는 창이나 탭을 전환할 필요 없이 질문에 대한 답변을 빠르게 얻을 수 있는 좋은 방법입니다. 프로젝트를 작업 중이고 집중력을 잃지 않고 무언가를 빠르게 찾아봐야 할 때 특히 유용합니다.
 
-![Desktop Shortcut](https://assets.khoj.dev/courseload_decision_dekstop.gif)
+![데스크톱 바로 가기](https://assets.khoj.dev/courseload_decision_dekstop.gif)
