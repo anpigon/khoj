@@ -1,7 +1,0 @@
-name = "khoj-documentation-ko"
-compatibility_date = "2025-06-29"
-
-[pages]
-build_output_dir = "documentation-ko/build"
-build_command = "yarn install && yarn build"
-build_base_dir = "documentation-ko"
