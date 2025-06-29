@@ -1,0 +1,449 @@
+---
+sidebar_position: 1
+---
+
+# 직접 호스팅 (Self-Host)
+자신의 컴퓨터에 Khoj를 직접 호스팅하는 방법에 대해 알아보세요.
+
+직접 호스팅의 장점:
+1. **개인정보 보호**: 데이터가 개인 네트워크를 벗어날 필요가 없습니다. 개인 컴퓨터에 배포하면 인터넷 연결 없이도 Khoj를 사용할 수 있습니다.
+2. **사용자 맞춤 설정**: 모델, 호스트 URL, 기능 활성화 등 Khoj를 원하는 대로 맞춤 설정할 수 있습니다.
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+## Khoj 설치
+직접 호스팅하는 Khoj를 위한 일반적인 설치 안내입니다.
+[Docker](?server=docker) 또는 [Pip](?server=pip)을 사용하여 Khoj 서버를 설치할 수 있습니다.
+
+:::info[오프라인 모델 + GPU]
+GPU로 오프라인 채팅 모델을 사용하려면 Ollama와 함께 Docker 설정을 사용하는 것을 권장합니다. Python 패키지를 통해 직접 로컬 Khoj 설정을 사용할 수도 있습니다.
+:::
+
+:::info[최초 실행]
+최초 실행 후에는 Khoj 서버를 다시 시작하여 모든 설정이 올바르게 적용되도록 하세요.
+:::
+
+<Tabs groupId="server" queryString>
+  <TabItem value="docker" label="Docker">
+    <Tabs groupId="operating-systems" queryString="os">
+      <TabItem value="macos" label="MacOS">
+        <h3>사전 준비사항</h3>
+        <h4>Docker</h4>
+        - *옵션 1*: [Docker Desktop](https://docs.docker.com/desktop/install/mac-install/)을 설치하려면 여기를 클릭하세요. [Docker Compose](https://docs.docker.com/desktop/install/mac-install/) 도구도 함께 설치해야 합니다.
+
+        - *옵션 2*: [Homebrew](https://brew.sh/)를 사용하여 Docker와 Docker Compose를 설치하세요.
+          ```shell
+          brew install --cask docker
+          brew install docker-compose
+          ```
+        <h3>설치</h3>
+        1. [Github](https://github.com/khoj-ai/khoj/blob/master/docker-compose.yml)에서 Khoj docker-compose.yml 파일을 다운로드하세요.
+           ```shell
+           mkdir ~/.khoj && cd ~/.khoj
+           wget https://raw.githubusercontent.com/khoj-ai/khoj/master/docker-compose.yml
+           ```
+        2. `docker-compose.yml`에서 환경 변수를 설정하세요.
+           - `KHOJ_ADMIN_PASSWORD`, `KHOJ_DJANGO_SECRET_KEY` (그리고 선택적으로 `KHOJ_ADMIN_EMAIL`)를 안전한 값으로 설정하세요. 이를 통해 나중에 관리자 패널에서 Khoj를 맞춤 설정할 수 있습니다.
+           - OpenAI, Anthropic 또는 Gemini 상용 채팅 모델을 사용하려면 `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, 또는 `GEMINI_API_KEY`를 각각의 API 키로 설정하세요.
+           - 호스트 머신에서 실행 중인 [Ollama](/advanced/ollama?type=first-run&server=docker#setup)를 사용하려면 `OPENAI_BASE_URL`의 주석을 해제하세요. 또는 vLLM이나 [LMStudio](/advanced/lmstudio)와 같은 OpenAI 호환 API의 URL로 설정하세요.
+        3. docker-compose.yml 파일이 있는 디렉터리에서 다음 명령어를 실행하여 Khoj를 시작하세요.
+           ```shell
+           cd ~/.khoj
+           docker-compose up
+           ```
+      </TabItem>
+      <TabItem value="windows" label="Windows">
+      <h3>사전 준비사항</h3>
+      1. [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)를 설치하고 컴퓨터를 다시 시작하세요.
+         ```shell
+         # PowerShell에서 실행
+         wsl --install
+         ```
+      2. **[WSL2 백엔드](https://docs.docker.com/desktop/wsl/#turn-on-docker-desktop-wsl-2)**(기본값)으로 [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/)을 설치하세요.
+
+      <h3>설치</h3>
+      1. [Github](https://github.com/khoj-ai/khoj/blob/master/docker-compose.yml)에서 Khoj docker-compose.yml 파일을 다운로드하세요.
+         ```shell
+         # Windows 사용자는 WSL2 터미널에서 이 명령어들을 실행해야 합니다.
+         mkdir ~/.khoj && cd ~/.khoj
+         wget https://raw.githubusercontent.com/khoj-ai/khoj/master/docker-compose.yml
+         ```
+      2. `docker-compose.yml`에서 환경 변수를 설정하세요.
+         - `KHOJ_ADMIN_PASSWORD`, `KHOJ_DJANGO_SECRET_KEY` (그리고 선택적으로 `KHOJ_ADMIN_EMAIL`)를 안전한 값으로 설정하세요. 이를 통해 나중에 관리자 패널에서 Khoj를 맞춤 설정할 수 있습니다.
+         - OpenAI, Anthropic 또는 Gemini 상용 채팅 모델을 사용하려면 `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, 또는 `GEMINI_API_KEY`를 각각의 API 키로 설정하세요.
+         - 호스트 머신에서 실행 중인 [Ollama](/advanced/ollama)를 사용하려면 `OPENAI_BASE_URL`의 주석을 해제하세요. 또는 vLLM이나 [LMStudio](/advanced/lmstudio)와 같은 OpenAI 호환 API의 URL로 설정하세요.
+      3. docker-compose.yml 파일이 있는 디렉터리에서 다음 명령어를 실행하여 Khoj를 시작하세요.
+         ```shell
+         # Windows 사용자는 WSL2 터미널에서 이 명령어들을 실행해야 합니다.
+         cd ~/.khoj
+         docker-compose up
+         ```
+      </TabItem>
+      <TabItem value="linux" label="Linux">
+        <h3>사전 준비사항</h3>
+        [Docker Desktop](https://docs.docker.com/desktop/install/linux/)을 설치하세요.
+        패키지 관리자를 사용하여 Docker Engine & Docker Compose를 설치할 수도 있습니다.
+
+        <h3>설치</h3>
+        1. [Github](https://github.com/khoj-ai/khoj/blob/master/docker-compose.yml)에서 Khoj docker-compose.yml 파일을 다운로드하세요.
+           ```shell
+           mkdir ~/.khoj && cd ~/.khoj
+           wget https://raw.githubusercontent.com/khoj-ai/khoj/master/docker-compose.yml
+           ```
+        2. `docker-compose.yml`에서 환경 변수를 설정하세요.
+           - `KHOJ_ADMIN_PASSWORD`, `KHOJ_DJANGO_SECRET_KEY` (그리고 선택적으로 `KHOJ_ADMIN_EMAIL`)를 안전한 값으로 설정하세요. 이를 통해 나중에 관리자 패널에서 Khoj를 맞춤 설정할 수 있습니다.
+           - OpenAI, Anthropic 또는 Gemini 상용 채팅 모델을 사용하려면 `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, 또는 `GEMINI_API_KEY`를 각각의 API 키로 설정하세요.
+           - 호스트 머신에서 실행 중인 [Ollama](/advanced/ollama)를 사용하려면 `OPENAI_BASE_URL`의 주석을 해제하세요. 또는 vLLM이나 [LMStudio](/advanced/lmstudio)와 같은 OpenAI 호환 API의 URL로 설정하세요.
+        3. docker-compose.yml 파일이 있는 디렉터리에서 다음 명령어를 실행하여 Khoj를 시작하세요.
+           ```shell
+           cd ~/.khoj
+           docker-compose up
+           ```
+      </TabItem>
+    </Tabs>
+
+:::info[원격 접속]
+기본적으로 Khoj는 실행 중인 컴퓨터에서만 접속할 수 있습니다. 원격 컴퓨터에서 Khoj에 접속하려면 [원격 접속 문서](/advanced/remote)를 참조하세요.
+:::
+
+터미널의 서버 로그에 `🌖 Khoj is ready to engage`가 표시되면 설치가 완료된 것입니다.
+  </TabItem>
+  <TabItem value="pip" label="Pip">
+
+<h3>1. Khoj 서버 설치</h3>
+- [python](https://realpython.com/installing-python/)과 [pip](https://pip.pypa.io/en/stable/installation/)가 컴퓨터에 설치되어 있는지 확인하세요.
+- 설치 중 llama-cpp 관련 문제가 발생하면 [llama-cpp-python 설정](https://github.com/abetlen/llama-cpp-python?tab=readme-ov-file#supported-backends)을 확인하세요.
+
+터미널에서 다음 명령어를 실행하여 Khoj 서버를 설치하세요.
+
+  <Tabs groupId="operating-systems" queryString="os">
+    <TabItem value="macos" label="MacOS">
+      <Tabs groupId="gpu" queryString="gpu">
+        <TabItem value="arm" label="ARM/M1+">
+    ```shell
+CMAKE_ARGS="-DGGML_METAL=on" python -m pip install 'khoj[local]'
+    ```
+        </TabItem>
+        <TabItem value="intel" label="Intel">
+    ```shell
+python -m pip install 'khoj[local]'
+    ```
+        </TabItem>
+      </Tabs>
+    </TabItem>
+    <TabItem value="windows" label="Windows">
+      Windows의 PowerShell에서 다음 명령어를 실행하세요.
+      <Tabs groupId="gpu" queryString="gpu">
+        <TabItem value="cpu" label="CPU">
+       ```shell
+ # Khoj 설치
+ py -m pip install 'khoj[local]'
+      ```
+        </TabItem>
+        <TabItem value="nvidia" label="NVIDIA (CUDA) GPU">
+       ```shell
+ # 1. NVIDIA (CUDA) GPU 사용
+ $env:CMAKE_ARGS = "-DGGML_CUDA=on"
+ # 2. Khoj 설치
+ py -m pip install 'khoj[local]'
+      ```
+        </TabItem>
+        <TabItem value="amd" label="AMD (ROCm) GPU">
+       ```shell
+ # 1. AMD (ROCm) GPU 사용
+ $env:CMAKE_ARGS = "-DGGML_HIPBLAS=on"
+ # 2. Khoj 설치
+ py -m pip install 'khoj[local]'
+      ```
+        </TabItem>
+        <TabItem value="vulkan" label="VULKAN GPU">
+       ```shell
+ # 1. VULKAN GPU 사용
+ $env:CMAKE_ARGS = "-DGGML_VULKAN=on"
+ # 2. Khoj 설치
+ py -m pip install 'khoj[local]'
+      ```
+        </TabItem>
+      </Tabs>
+    </TabItem>
+    <TabItem value="linux" label="Linux">
+      <Tabs groupId="gpu" queryString="gpu">
+        <TabItem value="cpu" label="CPU">
+          ```shell
+          python -m pip install 'khoj[local]'
+          ```
+        </TabItem>
+        <TabItem value="nvidia" label="NVIDIA (CUDA) GPU">
+          ```shell
+          CMAKE_ARGS="-DGGML_CUDA=on" FORCE_CMAKE=1 python -m pip install 'khoj[local]'
+          ```
+        </TabItem>
+        <TabItem value="amd" label="AMD (ROCm) GPU">
+          ```shell
+          CMAKE_ARGS="-DGGML_HIPBLAS=on" FORCE_CMAKE=1 python -m pip install 'khoj[local]'
+          ```
+        </TabItem>
+        <TabItem value="vulkan" label="VULKAN GPU">
+          ```shell
+          CMAKE_ARGS="-DGGML_VULKAN=on" FORCE_CMAKE=1 python -m pip install 'khoj[local]'
+          ```
+        </TabItem>
+      </Tabs>
+    </TabItem>
+  </Tabs>
+
+<h3>2. Khoj 서버 시작</h3>
+
+터미널에서 다음 명령어를 실행하여 Khoj 서비스를 시작하세요.
+
+```shell
+USE_EMBEDDED_DB="true" khoj --anonymous-mode
+```
+`--anonymous-mode`는 로그인 없이 Khoj에 접속할 수 있게 합니다. 이는 보통 로컬 전용, 단일 사용자 설정에 적합합니다. 인증이 필요하면 [인증 설정 문서](/advanced/authentication)를 따르세요.
+
+<h4>최초 실행</h4>
+위 명령어를 처음 실행하면 다음을 요청받게 됩니다:
+1. 이메일과 안전한 비밀번호로 관리자 계정 생성
+2. 활성화할 채팅 모델 맞춤 설정
+   - [OpenAI](https://platform.openai.com/api-keys), [Anthropic](https://console.anthropic.com/account/keys), [Gemini](https://aistudio.google.com/app/apikey) API 키와 [OpenAI](https://platform.openai.com/docs/models), [Anthropic](https://docs.anthropic.com/en/docs/about-claude/models#model-names), [Gemini](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models#gemini-models), [오프라인](https://huggingface.co/models?pipeline_tag=text-generation&library=gguf) 채팅 모델 이름을 준비하여 최초 실행 시 설정할 수 있도록 하세요.
+3. 터미널의 서버 로그에 `🌖 Khoj is ready to engage`가 표시되면 설치가 완료된 것입니다!
+
+
+:::tip[자동 시작]
+Khoj를 백그라운드에서 자동으로 시작하려면 Windows에서는 [작업 스케줄러](https://www.windowscentral.com/how-create-automated-task-using-task-scheduler-windows-10)를, Mac, Linux에서는 [Cron](https://en.wikipedia.org/wiki/Cron)을 사용하세요 (예: `@reboot khoj`).
+:::
+  </TabItem>
+</Tabs>
+
+## Khoj 사용하기
+
+이제 웹 앱(http://localhost:42110)을 열고 상호작용을 시작할 수 있습니다!<br />
+다른 작업은 필요 없지만, 아래 단계에 따라 설정을 추가로 맞춤 설정할 수 있습니다.
+
+:::info[오프라인 채팅 모델에 보내는 첫 메시지]
+오프라인 채팅 모델은 첫 메시지를 보낼 때 다운로드됩니다. 다운로드에는 몇 분이 걸릴 수 있습니다! 이후 메시지는 더 빨라집니다.
+:::
+
+### 채팅 모델 추가
+<h4>Khoj 관리자 패널에 로그인</h4>
+http://localhost:42110/server/admin으로 이동하여 설치 시 설정한 관리자 자격 증명으로 로그인하세요.
+
+:::info[CSRF 오류]
+CSRF 오류를 피하려면 관리자 패널에 접속할 때 **127.0.0.1이 아닌 localhost**를 사용해야 합니다.
+:::
+
+:::info[CSRF 신뢰할 수 있는 출처 또는 설정되지 않은 쿠키 오류]
+Khoj 서버 앞에 로드 밸런서/리버스 프록시를 사용하는 경우: 이 오류를 피하려면 KHOJ_ALLOWED_DOMAIN=your-internal-ip-or-domain 환경 변수를 설정하세요.
+설정하지 않으면 기본적으로 KHOJ_DOMAIN으로 설정됩니다.
+:::
+
+:::info[허용되지 않는 호스트 또는 잘못된 요청 (400) 오류]
+사용자 지정 도메인(예: 192.168.12.3 또는 example.com)이나 HTTP를 통해 Khoj에 접속하려고 할 때 이 오류가 발생할 수 있습니다.
+이 오류를 피하려면 필요한 경우 KHOJ_DOMAIN=your-external-ip-or-domain 및 KHOJ_NO_HTTPS=True 환경 변수를 설정하세요.
+:::
+
+:::tip[참고]
+Mac에서 Safari를 사용하시나요? 관리자 패널에 로그인하지 못할 수 있습니다. 대신 Chrome이나 Firefox를 사용해 보세요.
+:::
+
+<h4>채팅 모델 구성</h4>
+사용할 채팅 모델을 설정하세요. Khoj는 로컬 및 온라인 채팅 모델을 지원합니다.
+
+<Tabs groupId="chatmodel" queryString>
+  <TabItem value="openai" label="OpenAI">
+
+:::info[Ollama 통합]
+Ollama를 사용하시나요? 더 자세한 사용자 지정 설정 지침은 [Ollama 통합](/advanced/ollama) 섹션을 참조하세요.
+:::
+
+1. 서버 관리자 설정에서 새로운 [AI 모델 API](http://localhost:42110/server/admin/database/aimodelapi/add)를 생성하세요.
+   - [OpenAI API 키](https://platform.openai.com/api-keys)를 추가하세요.
+   - 설정에 `OpenAI`와 같이 식별하기 쉬운 이름을 지정하세요.
+   - (선택 사항) API 기본 URL을 설정하세요. 이는 [Ollama](/advanced/ollama)나 [LMStudio](/advanced/lmstudio)와 같은 다른 OpenAI 호환 프록시 서버를 사용하는 경우에만 관련이 있습니다.<br />
+![ai 모델 api에 대한 예시 설정](/img/example_openai_processor_config.png)
+2. 새로운 [채팅 모델](http://localhost:42110/server/admin/database/chatmodel/add)을 생성하세요.
+    - `chat-model` 필드를 [OpenAI 채팅 모델](https://platform.openai.com/docs/models)로 설정하세요. 예: `gpt-4o`.
+    - `model-type` 필드를 `OpenAI`로 설정해야 합니다.
+    - 모델이 비전을 지원하는 경우 `vision enabled` 필드를 `true`로 설정하세요. 이는 현재 비전 기능이 있는 OpenAI 모델에만 지원됩니다.
+    - `tokenizer`와 `max-prompt-size` 필드는 선택 사항입니다. 사용 중인 모델의 토크나이저나 토큰 한도를 확실히 아는 경우에만 설정하세요. 무엇을 해야 할지 확실하지 않은 경우 문의해 주세요.<br />
+![채팅 모델 옵션에 대한 예시 설정](/img/example_chatmodel_option.png)
+  </TabItem>
+  <TabItem value="anthropic" label="Anthropic">
+1. 서버 관리자 설정에서 새로운 [AI 모델 API](http://localhost:42110/server/admin/database/aimodelapi/add)를 생성하세요.
+   - [Anthropic API 키](https://console.anthropic.com/account/keys)를 추가하세요.
+   - 설정에 `Anthropic`과 같이 식별하기 쉬운 이름을 지정하세요. API 기본 URL은 설정하지 마세요.
+2. 새로운 [채팅 모델](http://localhost:42110/server/admin/database/chatmodel/add)을 생성하세요.
+    - `chat-model` 필드를 [Anthropic 채팅 모델](https://docs.anthropic.com/en/docs/about-claude/models#model-names)로 설정하세요. 예: `claude-3-5-sonnet-20240620`.
+    - `model-type` 필드를 `Anthropic`으로 설정하세요.
+    - `ai model api` 필드를 1단계에서 생성한 Anthropic AI 모델 API로 설정하세요.
+  </TabItem>
+  <TabItem value="gemini" label="Gemini">
+1. 서버 관리자 설정에서 새로운 [AI 모델 API](http://localhost:42110/server/admin/database/aimodelapi/add)를 생성하세요.
+   - [Gemini API 키](https://aistudio.google.com/app/apikey)를 추가하세요.
+   - 설정에 `Gemini`와 같이 식별하기 쉬운 이름을 지정하세요. API 기본 URL은 설정하지 마세요.
+2. 새로운 [채팅 모델](http://localhost:42110/server/admin/database/chatmodel/add)을 생성하세요.
+    - `chat-model` 필드를 [Google Gemini 채팅 모델](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models#gemini-models)로 설정하세요. 예: `gemini-2.0-flash`.
+    - `model-type` 필드를 `Google`로 설정하세요.
+    - `ai model api` 필드를 1단계에서 생성한 Gemini AI 모델 API로 설정하세요.
+
+  </TabItem>
+  <TabItem value="offline" label="오프라인">
+오픈 웨이트 모델을 사용하면 오프라인 채팅은 완벽하게 비공개로 유지되며 인터넷 없이도 작동할 수 있습니다.
+
+:::tip[시스템 요구사항]
+- 최소 8GB RAM. **16Gb VRAM** 권장
+- 최소 **5GB 디스크** 공간 필요
+- Nvidia, AMD GPU 또는 Mac M1+ 컴퓨터는 채팅 응답 속도를 크게 향상시킵니다.
+:::
+
+1. [HuggingFace](https://huggingface.co/models?pipeline_tag=text-generation&library=gguf)에서 선호하는 채팅 모델의 이름을 가져오세요. *대부분의 GGUF 형식 채팅 모델이 지원됩니다*.
+2. 관리자 패널에서 [채팅 모델 생성 페이지](http://localhost:42110/server/admin/database/chatmodel/add/)를 여세요.
+3. `chat-model` 필드를 선호하는 채팅 모델의 이름으로 설정하세요.
+   - `model-type`이 `Offline`으로 설정되었는지 확인하세요.
+4. [사용자 채팅 설정](http://localhost:42110/settings) 및 [서버 채팅 설정](http://localhost:42110/server/admin/database/serverchatsettings/)에서 새로 추가된 채팅 모델을 기본 모델로 설정하세요.
+5. Khoj 서버를 다시 시작하고 새로운 오프라인 모델과 [채팅을 시작](http://localhost:42110)하세요!
+  </TabItem>
+</Tabs>
+
+:::tip[다중 채팅 모델]
+[ServerChatSettings](http://localhost:42110/server/admin/database/serverchatsettings/)의 `Default`, `Advanced` 필드에서 선호하는 기본 채팅 모델을 설정하세요.
+Khoj는 의도 감지, 웹 검색 등 모든 중간 단계에서 이 채팅 모델을 사용합니다.
+:::
+
+:::info[채팅 모델 필드]
+ - `tokenizer`와 `max-prompt-size` 필드는 선택 사항입니다. 사용 중인 모델의 토크나이저나 토큰 한도를 확실히 아는 경우에만 설정하세요. 이는 컨텍스트 확장을 개선합니다. 무엇을 해야 할지 확실하지 않은 경우 문의해 주세요.
+ - `vision enabled` 필드는 gpt-4o와 같이 비전 기능이 있는 OpenAI 모델에 대해서만 선택하세요. 다른 채팅 모델의 비전 기능은 현재 활용되지 않습니다.
+:::
+
+### 지식 동기화
+
+- Khoj를 사용하여 노트 및 문서와 채팅할 수 있습니다.
+- Khoj는 Khoj [데스크톱](/clients/desktop#setup), [Obsidian](/clients/obsidian#setup) 또는 [Emacs](/clients/emacs#setup) 클라이언트를 사용하여 파일과 폴더를 동기화 상태로 유지할 수 있습니다.
+- [Notion 작업 공간](/data-sources/notion_integration)은 웹 앱에서 직접 동기화할 수 있습니다.
+- [웹 앱](/clients/web#upload-documents)에서 채팅하고 싶은 특정 파일을 드래그 앤 드롭할 수도 있습니다.
+
+### Khoj 클라이언트 설치
+Khoj 웹 앱은 기본적으로 채팅, 검색 및 Khoj 설정에 사용할 수 있습니다.<br />
+Obsidian, Emacs, Whatsapp 또는 OS에서 쉽게 접속하고 문서를 Khoj와 동기화 상태로 유지하기 위해 Khoj 클라이언트를 설치할 수도 있습니다.
+
+:::info[참고]
+클라이언트 설정 페이지의 호스트 URL을 Khoj 서버 URL로 설정하세요. 기본적으로 `http://127.0.0.1:42110` 또는 `http://localhost:42110`을 사용하세요. `localhost`는 모든 경우에 작동하지 않을 수 있습니다.
+:::
+
+<Tabs groupId="client" queryString>
+  <TabItem value="desktop" label="데스크톱">
+  - Khoj 데스크톱 앱 [설치 문서](/clients/desktop#setup)를 읽어보세요.
+  </TabItem>
+  <TabItem value="emacs" label="Emacs">
+  - Khoj Emacs 패키지 [설치 문서](/clients/emacs#setup)를 읽어보세요.
+  </TabItem>
+  <TabItem value="obsidian" label="Obsidian">
+  - Khoj Obsidian 플러그인 [설치 문서](/clients/obsidian#setup)를 읽어보세요.
+  </TabItem>
+  <TabItem value="whatsapp" label="Whatsapp">
+  - Khoj Whatsapp 앱 [설치 문서](/clients/whatsapp)를 읽어보세요.
+  </TabItem>
+</Tabs>
+
+## 업그레이드
+
+### 서버 업그레이드
+  <Tabs groupId="server" queryString>
+    <TabItem value="pip" label="Pip">
+      ```shell
+      pip install --upgrade khoj
+      ```
+      *참고: khoj 서버의 최신 사전 출시 버전으로 업그레이드하려면 아래 명령어를 실행하세요.*
+    </TabItem>
+    <TabItem value="docker" label="Docker">
+      `docker-compose.yml` 파일이 있는 디렉터리에서 아래 명령어를 실행하세요.
+      이렇게 하면 최신 빌드를 가져와 서버를 업그레이드합니다.
+      ```shell
+      # Windows 사용자는 WSL2 터미널에서 이 명령어들을 실행해야 합니다.
+      cd ~/.khoj  # khoj docker-compose.yml 파일이 여기에 있다고 가정합니다.
+      docker-compose up --build
+      ```
+    </TabItem>
+  </Tabs>
+
+### 클라이언트 업그레이드
+  <Tabs groupId="client" queryString>
+    <TabItem value="desktop" label="데스크톱">
+      - 데스크톱 앱은 다시 시작할 때 최신 출시 버전으로 자동 업데이트됩니다.
+      - [Khoj 웹사이트](https://khoj.dev/downloads)에서 최신 버전을 수동으로 다운로드할 수 있습니다.
+    </TabItem>
+    <TabItem value="emacs" label="Emacs">
+    - Emacs 패키지 관리자를 사용하여 업그레이드하세요.
+    - 자세한 내용은 [khoj.el 패키지 설정](/clients/emacs#setup)을 참조하세요.
+    </TabItem>
+    <TabItem value="obsidian" label="Obsidian">
+      - Obsidian 앱의 설정 창에 있는 커뮤니티 플러그인 탭을 통해 업그레이드하세요.
+      - 자세한 내용은 [khoj 플러그인 설정](/clients/obsidian#setup)을 참조하세요.
+    </TabItem>
+  </Tabs>
+
+## 제거
+
+### 서버 제거
+  <Tabs groupId="server" queryString>
+    <TabItem value="pip" label="Pip">
+    ```shell
+    # khoj 서버 제거
+    pip uninstall khoj
+
+    # khoj postgres db 삭제
+    dropdb khoj -U postgres
+    ```
+    </TabItem>
+    <TabItem value="docker" label="Docker">
+    `docker-compose` 파일이 있는 디렉터리에서 아래 명령어를 실행하세요.
+    이렇게 하면 서버 컨테이너, 네트워크, 이미지 및 볼륨이 제거됩니다.
+
+    ```shell
+    docker-compose down --volumes
+    ```
+    </TabItem>
+  </Tabs>
+
+### 클라이언트 제거
+  <Tabs groupId="client" queryString>
+    <TabItem value="desktop" label="데스크톱">
+    OS의 표준 방법에 따라 Khoj 데스크톱 클라이언트를 제거하세요.
+    </TabItem>
+    <TabItem value="emacs" label="Emacs">
+    Emacs의 표준 방법에 따라 Khoj Emacs 패키지를 제거하세요.
+    </TabItem>
+    <TabItem value="obsidian" label="Obsidian">
+    Obsidian 앱의 설정 창에 있는 커뮤니티 플러그인 탭을 통해 제거하세요.
+    </TabItem>
+  </Tabs>
+
+## 문제 해결
+
+#### pip으로 Khoj 파이썬 패키지를 설치하려고 할 때 종속성 충돌 발생
+- **원인**: 시스템에 설치된 다른 파이썬 패키지와 Khoj가 요구하는 종속성 버전이 충돌할 때 발생합니다.
+- **해결**: [venv](https://docs.python.org/3/library/venv.html) 또는 [pipx](https://pypa.github.io/pipx)를 사용하여 파이썬 가상 환경에 Khoj를 설치하여 종속성 충돌을 피하세요.
+- **과정**:
+  1. [pipx](https://pypa.github.io/pipx/#install-pipx) 설치
+  2. `pipx`를 사용하여 다른 파이썬 패키지와의 종속성 충돌을 피하면서 Khoj를 설치하세요.
+     ```shell
+     pipx install khoj
+     ```
+  3. 이제 앞에서 설명한 표준 단계에 따라 `khoj`를 시작하세요.
+
+#### 토크나이저 종속성 빌드 중 설치 실패
+- **세부 정보**: `pip install khoj`가 `tokenizers` 종속성을 빌드하는 동안 실패합니다. Rust에 대한 불평이 표시됩니다.
+- **해결**: Rust를 설치하여 토크나이저 패키지를 빌드하세요. 예를 들어 Mac에서는 다음을 실행하세요:
+    ```shell
+    brew install rustup
+    rustup-init
+    source ~/.cargo/env
+    ```
+- **참조**: 자세한 내용은 [수정 사항이 포함된 이슈](https://github.com/khoj-ai/khoj/issues/82#issuecomment-1241890946)를 참조하세요.
+
+#### Docker의 Khoj가 오류 메시지에 "Killed"를 표시하며 오류 발생
+- **해결**: Docker 설정에서 Docker 컨테이너에 사용 가능한 RAM을 늘리세요.
+- **참조**: [StackOverflow 해결책](https://stackoverflow.com/a/50770267), [Mac용 Docker에서 리소스 구성](https://docs.docker.com/desktop/mac/#resources)
