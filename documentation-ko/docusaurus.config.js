@@ -16,7 +16,7 @@ const config = {
   favicon: 'img/favicon-128x128.ico',
 
   // Set the production url of your site here
-  url: 'https://khoj.jeongsk.work',
+  url: 'https://khoj-ko.netlify.app',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
