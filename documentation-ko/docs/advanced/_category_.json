@@ -1,8 +1,8 @@
 {
-  "label": "Advanced Self Hosting",
+  "label": "고급 셀프 호스팅",
   "position": 6,
   "link": {
     "type": "generated-index",
-    "description": "Advanced setup for Self Hosting Khoj server"
+    "description": "Khoj 서버 셀프 호스팅을 위한 고급 설정"
   }
 }
