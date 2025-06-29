@@ -2,46 +2,46 @@
 sidebar_position: 2
 ---
 
-# Chat
+# 채팅
 
-You can configure Khoj to chat with you about anything. When relevant, it'll use any notes or documents you shared with it to respond. It acts as an excellent research assistant, search engine, or personal tutor.
+Khoj를 설정하여 무엇이든 채팅할 수 있습니다. 관련성이 있는 경우, 공유한 노트나 문서를 사용하여 응답합니다. 훌륭한 연구 조교, 검색 엔진 또는 개인 튜터 역할을 합니다.
 
-<img src="https://assets.khoj.dev/vision_chat_example.png" alt="Chat on Web" style={{width: '400px'}}/>
+<img src="https://assets.khoj.dev/vision_chat_example.png" alt="웹에서 채팅" style={{width: '400px'}}/>
 
-### Overview
-- Creates a personal assistant for you to inquire and engage with your notes or online information as needed
-- You can choose to use Online or Offline Chat depending on your requirements
-- Supports multi-turn conversations with the relevant notes for context
-- Shows reference notes used to generate a response
+### 개요
+- 필요에 따라 노트나 온라인 정보에 대해 문의하고 참여할 수 있는 개인 비서를 만듭니다.
+- 요구 사항에 따라 온라인 또는 오프라인 채팅을 사용할 수 있습니다.
+- 관련 노트를 컨텍스트로 사용하여 다중 턴 대화를 지원합니다.
+- 응답 생성에 사용된 참조 노트를 표시합니다.
 
-### Setup (Self-Hosting)
-See [the setup guide](/get-started/setup.mdx) to configure your chat models.
+### 설정 (자체 호스팅)
+채팅 모델을 구성하려면 [설정 가이드](/get-started/setup.mdx)를 참조하세요.
 
-### Use
-1. Open Khoj Chat
-    - **On Web**: Open [/chat](https://app.khoj.dev/chat) in your web browser
-    - **On Obsidian**: Search for *Khoj: Chat* in the [Command Palette](https://help.obsidian.md/Plugins/Command+palette)
-    - **On Emacs**: Run `M-x khoj <user-query>`
-2. Enter your queries to chat with Khoj. Use [slash commands](#commands) and [query filters](/miscellaneous/query-filters) to change what Khoj uses to respond
+### 사용법
+1. Khoj 채팅 열기
+    - **웹에서**: 웹 브라우저에서 [/chat](https://app.khoj.dev/chat)을 엽니다.
+    - **Obsidian에서**: [명령 팔레트](https://help.obsidian.md/Plugins/Command+palette)에서 *Khoj: 채팅*을 검색합니다.
+    - **Emacs에서**: `M-x khoj <user-query>`를 실행합니다.
+2. Khoj와 채팅하려면 쿼리를 입력합니다. Khoj가 응답하는 데 사용하는 것을 변경하려면 [슬래시 명령](#commands)과 [쿼리 필터](/miscellaneous/query-filters)를 사용합니다.
 
 
-#### Details
-1. Your query is used to retrieve the most relevant notes, if any, using Khoj search using RAG.
-2. These notes, the last few messages and associated metadata is passed to the enabled chat model along with your query to generate a response
+#### 세부 정보
+1. 쿼리는 RAG를 사용하여 Khoj 검색을 통해 가장 관련성이 높은 노트를 검색하는 데 사용됩니다(있는 경우).
+2. 이 노트, 마지막 몇 개의 메시지 및 관련 메타데이터는 활성화된 채팅 모델에 쿼리와 함께 전달되어 응답을 생성합니다.
 
-#### Conversation File Filters
-You can use conversation file filters to limit the notes used in the chat response. To do so, use the left panel in the web UI. Alternatively, you can also use [query filters](/miscellaneous/query-filters) to limit the notes used in the chat response.
+#### 대화 파일 필터
+대화 파일 필터를 사용하여 채팅 응답에 사용되는 노트를 제한할 수 있습니다. 이렇게 하려면 웹 UI의 왼쪽 패널을 사용합니다. 또는 [쿼리 필터](/miscellaneous/query-filters)를 사용하여 채팅 응답에 사용되는 노트를 제한할 수도 있습니다.
 
-<img src="/img/file_filters_conversation.png" alt="Conversation File Filter" style={{width: '400px'}}/>
+<img src="/img/file_filters_conversation.png" alt="대화 파일 필터" style={{width: '400px'}}/>
 
-#### Commands
-Slash commands allows you to change what Khoj uses to respond to your query
-- **/notes**: Limit chat to only respond using your notes, not just Khoj's general world knowledge as reference
-- **/general**: Limit chat to only respond using Khoj's general world knowledge, not using your notes as reference
-- **/default**: Allow chat to respond using your notes or it's general knowledge as reference. It's the default behavior when no slash command is used
-- **/online**: Use online information and incorporate it in the prompt to the LLM to send you a response.
-- **/image**: Generate an image in response to your query.
-- **/help**: Use /help to get all available commands and general information about Khoj
-- **/diagram**: Generate a diagram in response to your query. This is built on [Excalidraw](https://excalidraw.com/).
-- **/code**: Generate and run very simple Python code snippets. Refer to [Code Execution](code_execution) for details.
-- **/research**: Go deeper in a topic for more accurate, in-depth responses.
+#### 명령
+슬래시 명령을 사용하면 Khoj가 쿼리에 응답하는 데 사용하는 것을 변경할 수 있습니다.
+- **/notes**: Khoj의 일반적인 세계 지식이 아닌 노트만 사용하여 채팅이 응답하도록 제한합니다.
+- **/general**: 노트가 아닌 Khoj의 일반적인 세계 지식만 사용하여 채팅이 응답하도록 제한합니다.
+- **/default**: 슬래시 명령을 사용하지 않을 때 기본 동작으로, 노트 또는 일반 지식을 참조하여 채팅이 응답하도록 허용합니다.
+- **/online**: 온라인 정보를 사용하고 LLM에 프롬프트에 통합하여 응답을 보냅니다.
+- **/image**: 쿼리에 대한 응답으로 이미지를 생성합니다.
+- **/help**: 사용 가능한 모든 명령과 Khoj에 대한 일반 정보를 얻으려면 /help를 사용합니다.
+- **/diagram**: 쿼리에 대한 응답으로 다이어그램을 생성합니다. 이는 [Excalidraw](https://excalidraw.com/)를 기반으로 합니다.
+- **/code**: 매우 간단한 Python 코드 스니펫을 생성하고 실행합니다. 자세한 내용은 [코드 실행](code_execution)을 참조하세요.
+- **/research**: 더 정확하고 심층적인 응답을 위해 주제를 더 깊이 탐구합니다.
