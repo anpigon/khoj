@@ -8,7 +8,7 @@ sidebar_position: 4
 
 Without any desktop clients, you can start chatting with Khoj on the web. Bear in mind you do need one of the desktop clients in order to share and sync your data with Khoj.
 
-Go see it here --> [Khoj Cloud](https://app.khoj.dev).
+Go see it here: [Khoj Cloud](https://app.khoj.dev).
 
 ![](/img/khoj_web_app_home.png)
 
