@@ -1,8 +1,8 @@
 {
-  "label": "Features",
+  "label": "기능",
   "position": 3,
   "link": {
     "type": "generated-index",
-    "description": "Features supported by Khoj"
+    "description": "Khoj가 지원하는 기능"
   }
 }
