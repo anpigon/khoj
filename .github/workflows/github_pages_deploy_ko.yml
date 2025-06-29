@@ -40,11 +40,11 @@ jobs:
         # 👆 Build steps
         # - name: Setup Pages
         #   uses: actions/configure-pages@v5
-        # - name: Upload artifact
-        #   uses: actions/upload-pages-artifact@v3
-        #   with:
-        #     # 👇 Specify build output path
-        #     path: documentation-ko/build
+        - name: Upload artifact
+          uses: actions/upload-pages-artifact@v3
+          with:
+            # 👇 Specify build output path
+            path: documentation-ko/build
         - name: Deploy to GitHub Pages
           id: deployment
           uses: actions/deploy-pages@v4
