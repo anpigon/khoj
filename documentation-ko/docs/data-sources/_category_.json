@@ -1,8 +1,8 @@
 {
-  "label": "Data Sources",
+  "label": "데이터 소스",
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "Online data sources for indexing via Khoj"
+    "description": "Khoj를 통한 색인화를 위한 온라인 데이터 소스"
   }
 }

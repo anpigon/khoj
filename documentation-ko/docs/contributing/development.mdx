@@ -2,19 +2,19 @@
 sidebar_position: 0
 ---
 
-# Development
+# 개발
 
-Welcome to the development docs of Khoj! Thanks for your interest in being a contributor ❤️. Open source contributors are a corner-store of the Khoj community. We welcome all contributions, big or small.
+Khoj 개발 문서에 오신 것을 환영합니다! 기여자로서 관심을 가져주셔서 감사합니다 ❤️. 오픈 소스 기여자는 Khoj 커뮤니티의 초석입니다. 크고 작든 모든 기여를 환영합니다.
 
-To get started with contributing, check out the official GitHub docs on [contributing to an open-source project](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project).
+기여를 시작하려면 [오픈 소스 프로젝트에 기여하기](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project)에 대한 공식 GitHub 문서를 확인하세요.
 
-Join the [Discord](https://discord.gg/WaxF3SkFPU) server and click the ✅ for the question "Are you interested in becoming a contributor?" in the `#welcome-and-rules` channel. This will give you access to the `#contributors` channel where you can ask questions and get help from other contributors.
+[Discord](https://discord.gg/WaxF3SkFPU) 서버에 가입하고 `#welcome-and-rules` 채널에서 "기여자가 되는 데 관심이 있으신가요?" 질문에 ✅를 클릭하세요. 이렇게 하면 `#contributors` 채널에 접근할 수 있으며, 여기서 질문하고 다른 기여자로부터 도움을 받을 수 있습니다.
 
-If you're looking for a place to get started, check out the list of [Github Issues](https://github.com/khoj-ai/khoj/issues) with the tag `good first issue` to find issues that are good for first-time contributors.
+시작할 곳을 찾고 있다면 `good first issue` 태그가 있는 [Github 이슈](https://github.com/khoj-ai/khoj/issues) 목록을 확인하여 첫 기여자에게 좋은 이슈를 찾으세요.
 
-## Local Server Installation
-### Using Pip
-#### 1. Khoj Installation
+## 로컬 서버 설치
+### Pip 사용
+#### 1. Khoj 설치
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -59,30 +59,30 @@ pip install -e '.[dev]'
     </TabItem>
   </Tabs>
 
-#### 2. Postgres Installation & Setup
+#### 2. Postgres 설치 및 설정
 
-Khoj uses the `pgvector` package to store embeddings of your index in a Postgres database. To use this, you need to have Postgres installed.
+Khoj는 Postgres 데이터베이스에 인덱스의 임베딩을 저장하기 위해 `pgvector` 패키지를 사용합니다. 이를 사용하려면 Postgres가 설치되어 있어야 합니다.
 
   <Tabs groupId="operating-systems" queryString="os">
     <TabItem value="macos" label="MacOS">
-Install [Postgres.app](https://postgresapp.com/). This comes pre-installed with `pgvector` and relevant dependencies.
+[Postgres.app](https://postgresapp.com/)을 설치합니다. 여기에는 `pgvector` 및 관련 종속성이 미리 설치되어 있습니다.
     </TabItem>
     <TabItem value="windows" label="Windows">
-    1. Use the [recommended installer](https://www.postgresql.org/download/windows/).
-    2. Follow instructions to [Install PgVector](https://github.com/pgvector/pgvector#windows) in case you need to manually install it. Windows support is experimental for pgvector currently, so we recommend using Docker. Refer to Windows Installation Notes below if there are errors.
+    1. [권장 설치 프로그램](https://www.postgresql.org/download/windows/)을 사용합니다.
+    2. 수동으로 설치해야 하는 경우 [PgVector 설치](https://github.com/pgvector/pgvector#windows) 지침을 따릅니다. 현재 Windows에서 pgvector 지원은 실험적이므로 Docker를 사용하는 것이 좋습니다. 오류가 발생하면 아래 Windows 설치 노트를 참조하세요.
     </TabItem>
     <TabItem value="linux" label="Linux">
-    From [official instructions](https://wiki.postgresql.org/wiki/Apt)
+    [공식 지침](https://wiki.postgresql.org/wiki/Apt)에서
     </TabItem>
-    <TabItem value="source" label="From Source">
-    1. Follow instructions to [Install Postgres](https://www.postgresql.org/download/)
-    2. Follow instructions to [Install PgVector](https://github.com/pgvector/pgvector#installation) in case you need to manually install it.
+    <TabItem value="source" label="소스에서">
+    1. [Postgres 설치](https://www.postgresql.org/download/) 지침을 따릅니다.
+    2. 수동으로 설치해야 하는 경우 [PgVector 설치](https://github.com/pgvector/pgvector#installation) 지침을 따릅니다.
     </TabItem>
   </Tabs>
 
-##### Create the Khoj database
+##### Khoj 데이터베이스 생성
 
-Make sure to update your environment variables to match your Postgres configuration if you're using a different name. The default values should work for most people. When prompted for a password, you can use the default password `postgres`, or configure it to your preference. Make sure to set the environment variable `POSTGRES_PASSWORD` to the same value as the password you set here.
+다른 이름을 사용하는 경우 Postgres 구성과 일치하도록 환경 변수를 업데이트해야 합니다. 기본값은 대부분의 사용자에게 작동합니다. 암호를 묻는 메시지가 나타나면 기본 암호 `postgres`를 사용하거나 원하는 대로 구성할 수 있습니다. `POSTGRES_PASSWORD` 환경 변수를 여기에 설정한 암호와 동일한 값으로 설정해야 합니다.
 
   <Tabs groupId="operating-systems" queryString="os">
     <TabItem value="macos" label="MacOS">
@@ -102,7 +102,7 @@ sudo -u postgres createdb khoj --password
     </TabItem>
   </Tabs>
 
-#### 3. Build the front-end assets
+#### 3. 프론트엔드 자산 빌드
 
 ```shell
 cd src/interface/web/
@@ -110,35 +110,35 @@ yarn install
 yarn export
 ```
 
-You can optionally use `yarn dev` to start a development server for the front-end which will be available at http://localhost:3000. This is especially useful if you're making changes to the front-end code, but not necessary for running Khoj. Note that streaming does not work on the dev server due to how it is handled with SSR in Next.js.
+선택적으로 `yarn dev`를 사용하여 프론트엔드 개발 서버를 시작할 수 있으며, 이 서버는 http://localhost:3000에서 사용할 수 있습니다. 이는 프론트엔드 코드를 변경할 때 특히 유용하지만 Khoj를 실행하는 데는 필요하지 않습니다. Next.js의 SSR 처리 방식 때문에 개발 서버에서는 스트리밍이 작동하지 않습니다.
 
-Always run `yarn export` to test your front-end changes on http://localhost:42110 before creating a PR.
+PR을 생성하기 전에 항상 `yarn export`를 실행하여 http://localhost:42110에서 프론트엔드 변경 사항을 테스트하세요.
 
-#### 4. Run
-1. Start Khoj
+#### 4. 실행
+1. Khoj 시작
    ```bash
    khoj -vv
    ```
-2. Configure Khoj
-   - **Via the Desktop application**: Add files, directories to index using the settings page of your desktop application. Click "Save" to immediately trigger indexing.
+2. Khoj 구성
+   - **데스크톱 애플리케이션을 통해**: 데스크톱 애플리케이션의 설정 페이지를 사용하여 색인할 파일, 디렉토리를 추가합니다. "저장"을 클릭하여 즉시 색인을 트리거합니다.
 
-  Note: Wait after configuration for khoj to Load ML model, generate embeddings and expose API to query notes, images, documents etc specified in config YAML
+참고: 구성 후 Khoj가 ML 모델을 로드하고, 임베딩을 생성하고, 구성 YAML에 지정된 노트, 이미지, 문서 등을 쿼리할 API를 노출할 때까지 기다리세요.
 
-#### Windows Installation Notes
-1. Command `khoj` Not Recognized
-    - Try reactivating the virtual environment and rerunning the `khoj` command.
-    - If it still doesn't work repeat the installation process.
-2. Python Package Missing
-    - Use `pip install xxx` and try running the `khoj` command.
-3. Command `createdb` Not Recognized
-    - make sure path to postgres binaries is included in environment variables. It usually looks something like
+#### Windows 설치 노트
+1. `khoj` 명령이 인식되지 않음
+    - 가상 환경을 다시 활성화하고 `khoj` 명령을 다시 실행해 보세요.
+    - 여전히 작동하지 않으면 설치 프로세스를 반복합니다.
+2. Python 패키지 누락
+    - `pip install xxx`를 사용하고 `khoj` 명령을 실행해 보세요.
+3. `createdb` 명령이 인식되지 않음
+    - postgres 바이너리 경로가 환경 변수에 포함되어 있는지 확인합니다. 일반적으로 다음과 같습니다.
     ```
     C:\Program Files\PostgreSQL\16\bin
     ```
-4. Connection Refused on port xxxx
-    - Locate the `pg_hba.conf` file in the location where postgres was installed.
-    - Edit the file to have **trust** as the method for user postgres, local, and host connections.
-    - Below is an example:
+4. 포트 xxxx에서 연결 거부됨
+    - postgres가 설치된 위치에서 `pg_hba.conf` 파일을 찾습니다.
+    - 파일을 편집하여 사용자 postgres, local 및 host 연결에 대한 메서드를 **trust**로 설정합니다.
+    - 다음은 예시입니다:
 ```
 host    all             postgres        127.0.0.1/32            trust
 # "local" is for Unix domain socket connections only
@@ -148,118 +148,118 @@ host    all             all             127.0.0.1/32            trust
 # IPv6 local connections:
 host    all             all             ::1/128                 trust
 ```
-4. Errors with installing pgvector
-    - Reinstall Visual Studio 2022 Build Tools with:
-      1. desktop development with c++ selected in workloads
-      2. MSVC (C++ Build Tools), Windows 10/11 SDK, and C++/CLI support for build tools selected in individual components.
-    - Open the x64 Native Tools Command Prompt as an Administrator
-    - Follow the pgvector windows installation [instructions](https://github.com/pgvector/pgvector?tab=readme-ov-file#windows) in this command prompt.
+4. pgvector 설치 오류
+    - Visual Studio 2022 빌드 도구를 다음으로 다시 설치합니다:
+      1. 워크로드에서 c++를 사용한 데스크톱 개발 선택
+      2. 개별 구성 요소에서 MSVC (C++ 빌드 도구), Windows 10/11 SDK 및 빌드 도구용 C++/CLI 지원 선택
+    - x64 Native Tools Command Prompt를 관리자 권한으로 엽니다.
+    - 이 명령 프롬프트에서 pgvector windows 설치 [지침](https://github.com/pgvector/pgvector?tab=readme-ov-file#windows)을 따릅니다.
 
-### Using Docker
+### Docker 사용
 
-Make sure you install the latest version of [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/).
+최신 버전의 [Docker](https://docs.docker.com/get-docker/) 및 [Docker Compose](https://docs.docker.com/compose/install/)를 설치했는지 확인하세요.
 
-#### 1. Clone
+#### 1. 클론
 
 ```shell
 git clone https://github.com/khoj-ai/khoj && cd khoj
 ```
 
-#### 2. Configure
+#### 2. 구성
 
-1. Update [docker-compose.yml](https://github.com/khoj-ai/khoj/blob/master/docker-compose.yml) to use relevant environment variables.
-2. Comment out the `image` line and uncomment the `build` line in the `server` service
+1. [docker-compose.yml](https://github.com/khoj-ai/khoj/blob/master/docker-compose.yml)을 업데이트하여 관련 환경 변수를 사용합니다.
+2. `server` 서비스에서 `image` 줄을 주석 처리하고 `build` 줄의 주석을 해제합니다.
 
-#### 3. Run
+#### 3. 실행
 
-This will start the Khoj server, and the database.
+이렇게 하면 Khoj 서버와 데이터베이스가 시작됩니다.
 
 ```shell
 docker-compose up -d
 ```
 
-#### 4. Upgrade
+#### 4. 업그레이드
 
-If you've made changes to the codebase, you'll need to rebuild the Docker image before running the container again.
+코드베이스를 변경한 경우 컨테이너를 다시 실행하기 전에 Docker 이미지를 다시 빌드해야 합니다.
 
 ```shell
 docker-compose build --no-cache
 ```
 
-## Update clients
-In whichever clients you're using for testing, you'll need to update the server URL to point to your local server. By default, the local server URL should be `http://127.0.0.1:42110`.
+## 클라이언트 업데이트
+테스트에 사용하는 클라이언트에서 서버 URL을 로컬 서버를 가리키도록 업데이트해야 합니다. 기본적으로 로컬 서버 URL은 `http://127.0.0.1:42110`이어야 합니다.
 
-## Validate
-### Before Making Changes
-1. Install Khoj. Setup Git Hooks for Validation
+## 유효성 검사
+### 변경 전
+1. Khoj 설치. 유효성 검사를 위한 Git Hooks 설정
    ```shell
    ./scripts/dev_setup.sh
    ```
-   - Installs the khoj server and web app by default. Use the `--full` flag to install the Khoj Desktop and Obsidian client apps as well.
-   - Git hooks format code, check types automatically on every commit and push respectively.
-   - Note 1: If [pre-commit](https://pre-commit.com/#intro) didn't already get installed, [install it](https://pre-commit.com/#install) via `pip install pre-commit`
-   - Note 2: To run the pre-commit changes manually, use `pre-commit run --hook-stage manual --all` before creating PR
+   - 기본적으로 khoj 서버 및 웹 앱을 설치합니다. `--full` 플래그를 사용하여 Khoj 데스크톱 및 Obsidian 클라이언트 앱도 설치합니다.
+   - Git hooks는 모든 커밋 및 푸시 시 코드를 자동으로 포맷하고 유형을 확인합니다.
+   - 참고 1: [pre-commit](https://pre-commit.com/#intro)이 아직 설치되지 않은 경우 `pip install pre-commit`을 통해 [설치](https://pre-commit.com/#install)합니다.
+   - 참고 2: PR을 생성하기 전에 `pre-commit run --hook-stage manual --all`을 사용하여 pre-commit 변경 사항을 수동으로 실행합니다.
 
-### Before Creating PR
+### PR 생성 전
 
-:::tip[Note]
-You should be in an active virtual environment for Khoj in order to run the unit tests and linter. The `dev_setup.sh` script wil automatically create and activate it for you.
+:::tip[참고]
+단위 테스트 및 린터를 실행하려면 Khoj에 대한 활성 가상 환경에 있어야 합니다. `dev_setup.sh` 스크립트는 자동으로 이를 생성하고 활성화합니다.
 :::
 
-1. Ensure that you have a [Github Issue](https://github.com/khoj-ai/khoj/issues) that can be linked to the PR. If not, create one. Make sure you've tagged one of the maintainers to the issue. This will ensure that the maintainers are notified of the PR and can review it. It's best discuss the code design on an existing issue or Discord thread before creating a PR. This helps get your PR merged faster.
-1. Run unit tests.
+1. PR에 연결할 수 있는 [Github 이슈](https://github.com/khoj-ai/khoj/issues)가 있는지 확인합니다. 없는 경우 생성합니다. 이슈에 유지 관리자 중 한 명을 태그했는지 확인합니다. 이렇게 하면 유지 관리자에게 PR이 알림되고 검토할 수 있습니다. PR을 생성하기 전에 기존 이슈 또는 Discord 스레드에서 코드 디자인을 논의하는 것이 가장 좋습니다. 이렇게 하면 PR이 더 빨리 병합됩니다.
+1. 단위 테스트를 실행합니다.
    ```shell
    pytest
    ```
-2. Run the linter.
+2. 린터를 실행합니다.
    ```shell
    mypy
    ```
-4. Think about how to add unit tests to verify the functionality you're adding in the PR. If you're not sure how to do this, ask for help in the Github issue or on Discord's `#contributors` channel.
+4. PR에 추가하는 기능을 확인하기 위해 단위 테스트를 추가하는 방법을 고려합니다. 방법을 잘 모르겠다면 Github 이슈 또는 Discord의 `#contributors` 채널에서 도움을 요청하세요.
 
-### After Creating PR
-1. Automated [validation workflows](https://github.com/khoj-ai/khoj/tree/master/.github/workflows) should run for every PR. Tag one of the maintainers in the PR to trigger it.
+### PR 생성 후
+1. 모든 PR에 대해 자동화된 [유효성 검사 워크플로](https://github.com/khoj-ai/khoj/tree/master/.github/workflows)가 실행되어야 합니다. PR에서 유지 관리자 중 한 명을 태그하여 트리거합니다.
 
-## Obsidian Plugin Development
-### Plugin development setup
-The core code for the Obsidian plugin is under `src/interface/obsidian`. The file `main.ts` is a good place to start.
+## Obsidian 플러그인 개발
+### 플러그인 개발 설정
+Obsidian 플러그인의 핵심 코드는 `src/interface/obsidian` 아래에 있습니다. `main.ts` 파일은 시작하기 좋은 곳입니다.
 
-1. In your CLI, go to the directory `src/interface/obsidian` in the Khoj repository.
-2. Run `yarn install` to install the dependencies.
-3. Run `yarn dev` to start the development server. This will continually rebuild the plugin as you make changes to the code.
-    - Your code changes will be outputted to a file called `main.js` in the `obsidian` directory.
+1. CLI에서 Khoj 저장소의 `src/interface/obsidian` 디렉토리로 이동합니다.
+2. `yarn install`을 실행하여 종속성을 설치합니다.
+3. `yarn dev`를 실행하여 개발 서버를 시작합니다. 이렇게 하면 코드를 변경할 때마다 플러그인이 계속 다시 빌드됩니다.
+    - 코드 변경 사항은 `obsidian` 디렉토리에 `main.js`라는 파일로 출력됩니다.
 
-### Loading your development plugin in Obsidian
-1. Make sure you have the Khoj plugin installed in Obsidian. [See the plugin page](https://publish.obsidian.md/hub/02+-+Community+Expansions/02.05+All+Community+Expansions/Plugins/khoj).
-1. Open Obsidian and go to your settings (gear icon in the bottom left corner)
-2. Click on 'Community Plugins' in the left panel
-3. Next to the 'Installed Plugins' heading, click on the folder icon to open the folder with the plugin's source code.
-4. Open the `khoj` folder in the file explorer that opens. You'll see a file called `main.js` in this folder. To test your changes, replace this file with the `main.js` file that was generated by the development server in the previous section.
+### Obsidian에서 개발 플러그인 로드
+1. Obsidian에 Khoj 플러그인이 설치되어 있는지 확인합니다. [플러그인 페이지](https://publish.obsidian.md/hub/02+-+Community+Expansions/02.05+All+Community+Expansions/Plugins/khoj)를 참조하세요.
+1. Obsidian을 열고 설정(왼쪽 하단 모서리의 톱니바퀴 아이콘)으로 이동합니다.
+2. 왼쪽 패널에서 '커뮤니티 플러그인'을 클릭합니다.
+3. '설치된 플러그인' 제목 옆에 있는 폴더 아이콘을 클릭하여 플러그인의 소스 코드가 있는 폴더를 엽니다.
+4. 열리는 파일 탐색기에서 `khoj` 폴더를 엽니다. 이 폴더에 `main.js`라는 파일이 있습니다. 변경 사항을 테스트하려면 이 파일을 이전 섹션에서 개발 서버가 생성한 `main.js` 파일로 바꿉니다.
 
-## Create Khoj Release (Only for Maintainers)
-Follow the steps below to [release](https://github.com/khoj-ai/khoj/releases/) Khoj. This will create a stable release of Khoj on [Pypi](https://pypi.org/project/khoj/), [Melpa](https://stable.melpa.org/#%252Fkhoj) and [Obsidian](https://obsidian.md/plugins?id%253Dkhoj). It will also create desktop apps of Khoj and attach them to the latest release.
+## Khoj 릴리스 생성 (유지 관리자만 해당)
+Khoj를 [릴리스](https://github.com/khoj-ai/khoj/releases/)하려면 아래 단계를 따르세요. 이렇게 하면 [Pypi](https://pypi.org/project/khoj/), [Melpa](https://stable.melpa.org/#%252Fkhoj) 및 [Obsidian](https://obsidian.md/plugins?id%253Dkhoj)에 Khoj의 안정적인 릴리스가 생성됩니다. 또한 Khoj의 데스크톱 앱을 생성하고 최신 릴리스에 첨부합니다.
 
-1. Create and tag release commit by running the bump_version script. The release commit sets version number in required metadata files.
+1. bump_version 스크립트를 실행하여 릴리스 커밋을 생성하고 태그를 지정합니다. 릴리스 커밋은 필요한 메타데이터 파일에 버전 번호를 설정합니다.
   ```shell
   ./scripts/bump_version.sh -c "<release_version>"
   ```
-2. Push commit and then the tag to trigger the release workflow to create Release with auto generated release notes.
+2. 커밋을 푸시한 다음 태그를 푸시하여 릴리스 워크플로를 트리거하여 자동 생성된 릴리스 노트로 릴리스를 생성합니다.
   ```shell
-  git push origin master  # push release commit to khoj repository
-  git push origin <release_version>  # push release tag to khoj repository
+  git push origin master  # khoj 저장소에 릴리스 커밋 푸시
+  git push origin <release_version>  # khoj 저장소에 릴리스 태그 푸시
   ```
-3. [Optional] Update the Release Notes to highlight new features, fixes and updates
+3. [선택 사항] 새 기능, 수정 사항 및 업데이트를 강조하기 위해 릴리스 노트를 업데이트합니다.
 
-## Architecture
+## 아키텍처
 
 ![](/img/khoj_architecture.png)
 
-## Visualize Codebase
+## 코드베이스 시각화
 
-*[Interactive Visualization](https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=khoj-ai%2Fkhoj)*
+*[대화형 시각화](https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=khoj-ai%2Fkhoj)*
 
 ![](/img/khoj_codebase_visualization_0.2.1.png)
 
-## Visualize Khoj Obsidian Plugin Codebase
+## Khoj Obsidian 플러그인 코드베이스 시각화
 
 ![](/img/khoj_obsidian_codebase_visualization_0.2.1.png)
