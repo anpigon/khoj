@@ -1,27 +1,27 @@
-# Voice
+# 음성
 
-You can talk to Khoj using your voice. Khoj will respond to your queries using the same models as the chat feature. You can use voice chat on the web, Desktop, and Obsidian apps.
+음성을 사용하여 Khoj와 대화할 수 있습니다. Khoj는 채팅 기능과 동일한 모델을 사용하여 쿼리에 응답합니다. 웹, 데스크톱 및 Obsidian 앱에서 음성 채팅을 사용할 수 있습니다.
 
-![Voice Chat](https://assets.khoj.dev/speech_to_text_demo.gif)
+![음성 채팅](https://assets.khoj.dev/speech_to_text_demo.gif)
 
-Click on the little mic icon to send your voice message to Khoj. It will send back what it heard via text. You can edit the message before sending it, if required. Try it at https://app.khoj.dev/.
+작은 마이크 아이콘을 클릭하여 Khoj에 음성 메시지를 보냅니다. Khoj는 들은 내용을 텍스트로 다시 보냅니다. 필요한 경우 메시지를 보내기 전에 편집할 수 있습니다. https://app.khoj.dev/에서 사용해보세요!
 
-## Voice Response
+## 음성 응답
 
-If you send a voice message, Khoj will automatically respond back with a voice message.
-You can also click on the speaker icon next to any message to hear it out loud. The voice response feature is available only on the web view right now.
+음성 메시지를 보내면 Khoj는 자동으로 음성 메시지로 응답합니다.
+또한 모든 메시지 옆에 있는 스피커 아이콘을 클릭하여 소리 내어 들을 수 있습니다. 음성 응답 기능은 현재 웹 보기에서만 사용할 수 있습니다.
 
-![Speaker Icon](/img/text_to_speech.png)
+![스피커 아이콘](/img/text_to_speech.png)
 
-## Setup (Self-Hosting)
+## 설정 (자체 호스팅)
 
-Voice chat will automatically be configured when you initialize the application. The default configuration will run locally. If you want to use the OpenAI whisper API for voice chat, you can set it up by following these steps:
+음성 채팅은 애플리케이션을 초기화할 때 자동으로 구성됩니다. 기본 구성은 로컬에서 실행됩니다. 음성 채팅에 OpenAI Whisper API를 사용하려면 다음 단계에 따라 설정할 수 있습니다:
 
-1. Setup your OpenAI API key. See instructions [here](/get-started/setup#add-chat-models).
-2. Create a new configuration at http://localhost:42110/server/admin/database/speechtotextmodeloptions/. We recommend the value `whisper-1` and model type `Openai`.
+1. OpenAI API 키를 설정합니다. 지침은 [여기](/get-started/setup#add-chat-models)를 참조하세요.
+2. http://localhost:42110/server/admin/database/speechtotextmodeloptions/에서 새 구성을 생성합니다. `whisper-1` 값과 `Openai` 모델 유형을 권장합니다.
 
-If you want to use the Text to Speech feature, you can set it up by following these steps:
+텍스트 음성 변환 기능을 사용하려면 다음 단계에 따라 설정할 수 있습니다:
 
-1. Setup your account on [ElevenLabs.io](https://elevenlabs.io/).
-2. Configure your API key in your environment variables with the key `ELEVEN_LABS_API_KEY`.
-3. (Optional) Create a new [Voice model option](http://localhost:42110/server/admin/database/voicemodeloption/) with a specific voice ID from whichever voice you want to use. You can explore the options [here](https://elevenlabs.io/app/voice-library).
+1. [ElevenLabs.io](https://elevenlabs.io/)에서 계정을 설정합니다.
+2. `ELEVEN_LABS_API_KEY` 키로 환경 변수에 API 키를 구성합니다.
+3. (선택 사항) 사용하려는 음성의 특정 음성 ID로 새 [음성 모델 옵션](http://localhost:42110/server/admin/database/voicemodeloption/)을 생성합니다. [여기](https://elevenlabs.io/app/voice-library)에서 옵션을 탐색할 수 있습니다.

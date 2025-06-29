@@ -1,7 +1,7 @@
-# Shareable Chat
+# 공유 가능한 채팅
 
-You can share any of your conversations by going to the three dot menu on the conversation and selecting 'Share'. This will create a **public** link that you can share with anyone. The link will open the conversation in the same state it was when you shared it, so your future messages will not be visible to the person you shared it with.
+대화의 점 세 개 메뉴로 이동하여 '공유'를 선택하면 모든 대화를 공유할 수 있습니다. 이렇게 하면 누구와도 공유할 수 있는 **공개** 링크가 생성됩니다. 링크는 공유했을 때와 동일한 상태로 대화를 열므로, 향후 메시지는 공유한 사람에게 표시되지 않습니다.
 
-This means you can easily share a conversation with someone to show them how you solved a problem, or to get help with something you're working on.
+이는 문제를 해결한 방법을 보여주거나 작업 중인 내용에 대한 도움을 받기 위해 대화를 다른 사람과 쉽게 공유할 수 있음을 의미합니다.
 
-![demo of sharing a conversation](https://assets.khoj.dev/share_side_panel_conversation.gif)
+![대화 공유 데모](https://assets.khoj.dev/share_side_panel_conversation.gif)
