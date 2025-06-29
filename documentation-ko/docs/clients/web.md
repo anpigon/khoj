@@ -8,7 +8,7 @@ sidebar_position: 4
 
 데스크톱 클라이언트 없이도 웹에서 Khoj와 채팅을 시작할 수 있습니다. 데이터를 Khoj와 공유하고 동기화하려면 데스크톱 클라이언트 중 하나가 필요하다는 점을 명심하세요.
 
-여기서 확인하세요 --> [Khoj 클라우드](https://app.khoj.dev).
+여기서 확인하세요: [Khoj 클라우드](https://app.khoj.dev).
 
 ![](/img/khoj_web_app_home.png)
 
@@ -33,7 +33,7 @@ sidebar_position: 4
 
 ### 휴대폰에 설치하기
 선택적으로 Khoj를 [프로그레시브 웹 앱(PWA)](https://web.dev/learn/pwa/installation)으로 설치할 수 있습니다. 이렇게 하면 휴대폰에서 Khoj에 빠르고 쉽게 접속할 수 있습니다.
-1. 휴대폰의 웹 브라우저(Chrome/Edge 권장)에서 [Khoj 클라우드](https.app.khoj.dev) 또는 직접 호스팅하는 Khoj 서버에 로그인합니다.
+1. 휴대폰의 웹 브라우저(Chrome/Edge 권장)에서 [Khoj 클라우드](https://app.khoj.dev) 또는 직접 호스팅하는 Khoj 서버에 로그인합니다.
 2. 브라우저의 점 3개 메뉴를 열고 "홈 화면에 추가" 옵션을 클릭합니다.
 3. 다음 화면에서 "설치"를 클릭하여 휴대폰 홈 화면에 Khoj 아이콘을 추가합니다.
 
